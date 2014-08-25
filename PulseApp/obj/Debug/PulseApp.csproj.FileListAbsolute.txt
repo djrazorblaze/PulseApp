@@ -1,0 +1,10 @@
+c:\users\hp_demo\documents\visual studio 2010\Projects\PulseApp\PulseApp\bin\PulseApp.dll
+c:\users\hp_demo\documents\visual studio 2010\Projects\PulseApp\PulseApp\bin\PulseApp.pdb
+c:\users\hp_demo\documents\visual studio 2010\Projects\PulseApp\PulseApp\obj\Debug\PulseApp.dll
+c:\users\hp_demo\documents\visual studio 2010\Projects\PulseApp\PulseApp\obj\Debug\PulseApp.pdb
+C:\Users\HP_Demo\Documents\Visual Studio 2010\Projects\PulseApp\PulseApp\obj\Debug\PulseApp.csprojResolveAssemblyReference.cache
+C:\Users\user\Desktop\PulseApp 3\PulseApp\bin\PulseApp.dll
+C:\Users\user\Desktop\PulseApp 3\PulseApp\bin\PulseApp.pdb
+C:\Users\user\Desktop\PulseApp 3\PulseApp\obj\Debug\PulseApp.csprojResolveAssemblyReference.cache
+C:\Users\user\Desktop\PulseApp 3\PulseApp\obj\Debug\PulseApp.dll
+C:\Users\user\Desktop\PulseApp 3\PulseApp\obj\Debug\PulseApp.pdb

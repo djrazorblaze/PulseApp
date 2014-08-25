@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />    
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, target-densitydpi=device-dpi" />
+        <!-- CSS -->
+        <link type="text/css" rel="stylesheet" href="css/index.css" />
+       	<link type="text/css" rel="stylesheet" href="jquerymobile/jquery.mobile-1.4.3.min.css" />
+       	<!-- Java Scripts -->		
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/handlebars-v1.3.0.js"></script>
+		<script type="text/javascript" src="jquerymobile/jquery.mobile-1.4.3.min.js"></script>
+		<!-- Theme -->
+		<link rel="stylesheet" href="themes/PulseTheme.css" />
+		<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+		<!-- iScroll -->
+		<link rel="stylesheet" href="css/jquery.mobile.iscrollview.css" />
+		<link rel="stylesheet" href="css/jquery.mobile.iscrollview-pull.css" />
+		<script src="js/iscroll.js" type="text/javascript"></script>
+		<script src="js/jquery.mobile.iscrollview.js" type="text/javascript"></script>
+		
+		<title>Pulse</title>
+</head>
+<body>
+        
+
+<!-- Home -->
+<div data-role="page" id="home">
+	<div data-role="header" data-position="fixed">
+		<h1>Pulse</h1>
+		<a href="#settings" id="fixedMenu" data-icon="gear" data-transition="slideup"  data-iconpos="notext" class="ui-btn-right ui-nodisc-icon" style="border: 0px solid; box-shadow: none"></a>
+	</div>
+ 			<div data-role="content" data-theme="b">
+            <div class="content-primary">	
+
+                      <script id="news-template" type="text/x-handlebars-template">
+                        {{#.}}
+                        <li><h3>{{this.NewsHeader}}</h3><p>{{this.NewsContent}}</p><p>{{this.DateTimeAdded}}</p></li>
+                        {{/.}}
+                    </script>   
+                <ul data-role="listview" data-filter="true" class="ui-listview" id="home-list">
+				          <li><h1>Cataract op patients can visit polyclinic for check-ups</h1>
+                          <h3>SOME cataract surgery patients will no longer have to head back to Tan Tock Seng Hospital</h3>
+                          <p>8 August 2014</p></li>
+                          <li><a href="#post"><img src="img\ebola.jpg" alt="ebola"/>
+                          <h2>All suited up to take on Ebola</h2>
+                          <h3>Cataract op patients can visit polyclinic for check-ups</h3>
+                          <p>7 August 2014</p></a></li>
+                          <li><h2>Warning: Your home can be a dangerous place</h2>
+                          <h3>Accidents at home account for more than a third of trauma patients: Report</h3>
+                          <p>4 August 2014</p></li>
+                          <li><h2>Nurses eye bigger role in medical care and teaching</h2>
+                          <h3>WHILE nurses welcomed news of higher pay yesterday, what many say they are really looking forward to is the bigger role they can play in medical care and teaching.</h3>
+                          <p>1 August 2014</p></li>
+			    </ul>
+			</div>
+           </div>            
+                          	
+    
+	<div data-role="footer" data-position="fixed" data-theme="a">
+		<div data-role="navbar" >
+		<ul>
+			<li><a href="index.html" data-icon="home" data-prefetch="true" data-transition="fade" class="ui-nodisc-icon"></a></li>
+			<li><a href="#favourites" data-icon="heart" data-prefetch="true" data-transition="fade" class="ui-nodisc-icon"></a></li>
+			<li><a href="#alerts" data-icon="alert" data-prefetch="true" data-transition="fade" class="ui-nodisc-icon"></a></li>
+		</ul>
+		</div>
+	</div><!-- /footer -->
+</div>
+
+<script>
+
+    $(document).on('pageinit', '#home', function () {
+    
+
+//ignore. using another method but failed.
+//    getData: function(obj, callback) {
+//    $.get(obj.target, function(callbackObject) {
+//        callback.call(null, callbackObject);
+//    }
+//}
+//useData: function() {
+//    superObject.getData({'target': 'http://localhost:51636/JSON.asmx/GetPostings'}, function(data) {
+//        var hobbies = data.NewsRecordID;
+//        console.log(hobbies);
+//    });
+//}
+
+//Used to get json 
+        //$('#home-list').append('<li>Loading content</li>');
+        //var payload = {"NewsRecordID":1005};
+//$.ajax({
+//    crossDomain: true,
+//    url: 'http://localhost:51636/JSON.asmx/GetPostings',
+//    contentType: "application/json; charset=utf-8",
+//    data: { NewsRecordID: 3034 },
+//    dataType:"jsonp",
+//    success: function (result) {
+//          $('#home-list').append('<li>The feed loads fine'); // to test function
+//          ajax.parseJSON(result);
+
+//    },
+//   error: function (request, error) {
+//       $('#home-list').append('<li>Trouble getting JSON'); // to test function
+//        alert('Network error has occurred please try again!');
+//    }
+//});
+//var newsInfo = {
+//    id: null,
+//    result: null
+//}
+////used to parse in data from json
+//var ajax = {
+//    parseJSON: function (result) {
+//        newsInfo.result = result.results;
+//        $('#home-list').empty();
+//        var newsListHandler = Handlebars.compile($("#news-template").html());
+//        $('#home-list').html(newsListHandler(result.results));
+//        $('#home-list').listview('refresh');
+//    }
+//}
+
+
+
+});
+$(document).on('pageinit', '#home', function () {
+    $("#home").bind("swipeleft", function (e) {
+        $.mobile.changePage("#favourites");
+    });
+});
+
+$(document).on('pageinit', '#favourites', function () {
+    $("#favourites").bind("swipeleft", function (e) {
+        $.mobile.changePage("#alerts");
+    });
+});
+
+$(document).on('pageinit', '#favourites', function () {
+    $("#favourites").bind("swiperight", function (e) {
+        $.mobile.changePage("#home");
+    });
+});
+
+$(document).on('pageinit', '#alerts', function () {
+    $("#alerts").bind("swiperight", function (e) {
+        $.mobile.changePage("#favourites");
+    });
+});
+// used xml
+//    $(document).on('pageinit', '#home', function () {
+//        //$('#home-list').append('<li>Loading content');
+//        $.ajax({
+//            type: "POST",
+//            url: 'http://localhost:51636/JSON.asmx/GetPostings',
+//            dataType: "xml",
+//            success: xmlParser 
+//            });
+//     });
+
+//      function xmlParser(xml) {
+
+//          $(xml).find("getNews").each(function () {
+////             $('#home-list').append('<li>The feed loads fine'); // to test function
+//             $("#home-list").append('<li><p>' +
+//               $(this).find("NewsHeader").text() +
+////             $(this).find("NewsContent").text() +
+//               $(this).find("DateTimeAdded").text() + '</li></p>');
+
+//         });
+
+//     }
+
+</script>
+
+<!-- Favourites -->
+<div data-role="page" id="favourites">
+	<div data-role="header" data-position="fixed">
+		<h1>Favourites</h1>
+		<a href="#settings" id="A1" data-icon="gear" data-transition="slideup"  data-iconpos="notext" class="ui-btn-right ui-nodisc-icon" style="border: 0px solid; box-shadow: none"></a>
+		
+	</div>
+ 			<div data-role="content" data-theme="b">
+            <div class="content-primary">	
+
+                      <script id="favourites-template" type="text/x-handlebars-template">
+                        {{#.}}
+                        <li><h3>{{this.NewsHeader}}</h3><p>{{this.NewsContent}}</p><p>{{this.DateTimeAdded}}</p></li>
+                        {{/.}}
+                    </script>   
+                <ul data-role="listview" data-filter="true" class="ui-listview" id="favourites-list">
+                          <li><a href="#post"><img src="img\ebola.jpg" alt="ebola"/>
+                          <h2>All suited up to take on Ebola</h2>
+                          <h3>Cataract op patients can visit polyclinic for check-ups</h3>
+                          <p>7 August 2014</p></a></li>
+                          
+			    </ul>
+			</div>
+           </div>            
+                          	
+    
+	<div data-role="footer" data-position="fixed" data-theme="a">
+		<div data-role="navbar" >
+		<ul>
+			<li><a href="index.html" data-icon="home" data-prefetch="true" data-transition="fade" class="ui-nodisc-icon"></a></li>
+			<li><a href="#favourites" data-icon="heart" data-prefetch="true" data-transition="fade" class="ui-nodisc-icon"></a></li>
+			<li><a href="#alerts" data-icon="alert" data-prefetch="true" data-transition="fade" class="ui-nodisc-icon"></a></li>
+		</ul>
+		</div>
+	</div><!-- /footer -->
+</div>
+
+<!-- Alerts -->
+<div data-role="page" id="alerts">
+	<div data-role="header" data-position="fixed">
+		<h1>Alerts</h1>
+		<a href="#settings" id="A3" data-icon="gear" data-transition="slideup"  data-iconpos="notext" class="ui-btn-right ui-nodisc-icon" style="border: 0px solid; box-shadow: none"></a>
+		
+	</div>
+ 			<div data-role="content" data-theme="b">
+            <div class="content-primary">	
+
+                      <script id="alerts-template" type="text/x-handlebars-template">
+                        {{#.}}
+                        <li><h3>{{this.NewsHeader}}</h3><p>{{this.NewsContent}}</p><p>{{this.DateTimeAdded}}</p></li>
+                        {{/.}}
+                    </script>   
+                <ul data-role="listview" data-filter="true" class="ui-listview" id="alerts-list">
+                          <li><h2>Warning: Your home can be a dangerous place</h2>
+                          <h3>Accidents at home account for more than a third of trauma patients: Report</h3>
+                          <p>4 August 2014</p></li>
+                          
+			    </ul>
+			</div>
+           </div>            
+                          	
+    
+	<div data-role="footer" data-position="fixed" data-theme="a">
+		<div data-role="navbar" >
+		<ul>
+			<li><a href="index.html" data-icon="home" data-prefetch="true" data-transition="fade" class="ui-nodisc-icon"></a></li>
+			<li><a href="#favourites" data-icon="heart" data-prefetch="true" data-transition="fade" class="ui-nodisc-icon"></a></li>
+			<li><a href="#alerts" data-icon="alert" data-prefetch="true" data-transition="fade" class="ui-nodisc-icon"></a></li>
+		</ul>
+		</div>
+	</div><!-- /footer -->
+</div>
+
+<!-- Settings -->
+<div data-role="page" id="settings" data-theme="d">
+	<div data-role="header" data-position="fixed" data-theme="a">
+		<h1>Settings</h1><a href="#home" data-transition="slideup" data-direction="reverse" data-icon="check" class="ui-btn-right">Done</a>
+	</div>
+
+		<div class="ui-content" id="profile-content">
+			<p>Profile</p>
+				<ul id="profile" data-role="listview" data-theme="d">
+					<li>Staff ID: ST10002 </br>
+                        Staff Name: Bernard John
+                    </li>
+				</ul>
+		</div>
+		
+		<div id="category-content">
+				<ul id="category" data-role="listview" data-theme="d">
+					<fieldset data-role="controlgroup" data-iconpos="right">
+		<legend>Edit Categories</legend>
+	
+		<input type="checkbox" name="Topstories" id="Topstories" checked="checked">
+		<label for="Topstories">Top Stories</label>
+		<input type="checkbox" name="Breakingnews" id="Breakingnews">
+		<label for="Breakingnews">Breaking News</label>
+		<input type="checkbox" name="Events" id="Events">
+		<label for="Events">Events</label>
+		<input type="checkbox" name="Healthtips" id="Healthtips">
+		<label for="Healthtips">Health Tips</label>
+		<input type="checkbox" name="Others" id="Others">
+		<label for="Others">Others</label>
+	</fieldset>
+				</ul>
+		</div>
+		
+		<div class="ui-content" id="colour-content">
+				<ul id="colour" data-role="listview" data-theme="d" data-inset="false">
+					<fieldset data-role="controlgroup" data-iconpos="right" >
+                    <legend>Colour Preferences</legend>
+                    <input type="radio" name="radio-choice" id="radio-choice-1" value="choice-1" checked="checked">
+                    <label for="radio-choice-1">Red</label>
+ 
+                    <input type="radio" name="radio-choice" id="radio-choice-2" value="choice-2">
+                    <label for="radio-choice-2">Yellow</label>
+ 
+                    <input type="radio" name="radio-choice" id="radio-choice-3" value="choice-3">
+                    <label for="radio-choice-3">Blue</label>
+ 
+                    <input type="radio" name="radio-choice" id="radio-choice-4" value="choice-4">
+                    <label for="radio-choice-4">Purple</label>
+                  
+                    <input type="radio" name="radio-choice" id="radio-choice-5" value="choice-5">
+                    <label for="radio-choice-5">Green</label>
+                </fieldset>
+				</ul>
+		</div>
+		
+		<div class="ui-content" id="about-content">
+		<ul id="about-btn" data-role="listview" data-theme="d">
+			<li><a href="#about" data-transition="slide"> About</a></li>
+		</ul>
+	</div>
+	
+	<div class="ui-content" id="logout-content">
+		<ul id="logout-btn" data-role="listview" data-theme="d">
+			<li><a href="#login" data-transition="slide"> Log Out</a></li>
+		</ul>
+	</div>
+		
+</div>
+
+<!-- Search -->
+<div id="searchlist" data-role="page" >
+            <div data-theme="a" data-role="header" data-position="fixed">
+                <h3>
+                    Pulse
+                </h3><a href="#home" class="ui-btn-left" data-transition="slide" data-direction="reverse">Back</a>
+            </div>       
+            <div data-role="content">
+                <div class="example-wrapper" data-iscroll>
+                    <input name="movie-title" id="movie-title" value="" type="text" placeholder="Enter Movie Title"/>           
+                    <a href="#" class="ui-btn" id="search-movie">Search</a>
+                    <script id="movies-template" type="text/x-handlebars-template">
+                        {{#.}}
+                        <li><a data-id="{{this.id}}"><img src="{{this.poster_path}}"/><h3>{{this.title}}</h3><p>{{this.release_date}}</p></a></li>
+                        {{/.}}
+                    </script>                     
+                    <ul data-role="listview"  id="movie-list" data-theme="b">
+                        <li> ji </li> 
+                    </ul>
+                </div>
+            </div>           
+        </div>
+        
+                
+ <!-- Post -->   
+        <div data-role="page" id="post">
+
+        <div data-role="header" data-position="fixed">
+		<h1>Post</h1>
+		<a id="post-save-btn" data-icon="heart" class="ui-btn-right ui-nodisc-icon" style="border: 0px solid; box-shadow: none">Favourite</a>
+		<a href="#home" id="back" data-icon="arrow-l" data-transition="reverse" data-iconpos="notext" class="ui-btn-left ui-nodisc-icon" style="border: 0px solid; box-shadow: none">Back</a> 
+        </div>                         
+            <div data-role="content">
+                      <ul data-theme="b">
+                      <img src="img\Ebola.jpg" style="width: 100%" />
+                        <li style="white-space:normal">                 
+               <h1>All suited up to take on Ebola</h1>
+               <h2>Sars veteran says Singapore has preventive measures in place</h2>
+               <p>Professor Leo Yee Sin wearing an N95 mask (hidden under the visor), a visor and its attached mask, a gown and gloves before entering the negative pressure room in Ward 72 of the Communicable Diseases Centre. PHOTO: LIM YAOHUI FOR THE SUNDAY TIMES
+The Straits Times (7 August 2014) - Professor Leo Yee Sin founded and heads Tan Tock Seng Hospital (TTSH) Institute of Infectious Diseases and Epidemiology. She is also clinical director of the CommunicableDiseases Centre.\ She was awarded the Public Service Star in 2003 for her work against Sars, and is overseeing the building of the new National Centre for Infectious Diseases, which is expected to be ready by 2018.
+</p> </li> 
+                        </ul>
+               
+            </div>
+       
+    </div>
+<script>
+
+    $("#post-save-btn").click(function () {
+        $("#post-save-btn").text("Favourited");
+    });
+
+</script>
+        
+ <!-- Post -->   
+        <div data-role="page" id="headline">
+            <div data-theme="a" data-role="header">
+                <a href="#searchlist" class="ui-btn-left" data-transition="slide" data-direction="reverse">Back</a>                       
+                <h3>
+                    Movie Info
+                </h3>
+            </div>       
+            <div data-role="content">
+                <script id="movie-template" type="text/x-handlebars-template">
+                    {{#.}}
+                    <li><img src="http://d3gtl9l2a4fn1j.cloudfront.net/t/p/w185{{this.poster_path}}"/></li>
+                    <li>Title: {{this.original_title}}</li>
+                    <li>Release date : {{this.release_date}}</li>
+                    <li>Popularity : {{this.popularity}}</li>
+                    <li>Popularity : {{this.vote_average}}</li>
+                    {{/.}}
+                </script>                 
+                <ul data-role="listview"  id="movie-data" data-theme="a">
+                    
+                </ul>
+            </div>
+        </div> 
+
+<script>
+
+$('#searchlist').on('pageinit', function(){     
+    
+    $('#search-movie').on('click', function(){
+        if($('#movie-title').val().length > 0) {
+            var url = 'http://api.themoviedb.org/3/',
+                mode = 'search/movie?query=',
+                movieName = '&query='+encodeURI($('#movie-title').val()),       
+                key = '&api_key=470fd2ec8853e25d2f8d86f685d2270e';       
+             
+            $.ajax({
+                url: url + mode + key + movieName ,
+                dataType: "jsonp",
+                async: true,
+                success: function (result) {
+                    ajax.parseJSONP(result);
+                },
+                error: function (request,error) {
+                    alert('Network error has occurred please try again!');
+                }
+            });         
+        } else {
+            alert('Please enter mobie title!');
+        }      
+    });       
+});
+ 
+$('#headline').on('pagebeforeshow',  function(){     
+    $('#movie-data').empty();
+    $.each(movieInfo.result, function(i, row) {
+        if(row.id == movieInfo.id) {
+            var movieHandler = Handlebars.compile($("#movie-template").html());
+            $('#movie-data').html(movieHandler(row));               
+        }
+    });         
+    $('#movie-data').listview('refresh');    
+});
+ 
+$( document).on('vclick','#movie-list li a', function(){ 
+    movieInfo.id = $(this).attr('data-id');
+    $.mobile.changePage( "#headline", { transition: "slide", changeHash: false });
+});
+ 
+var movieInfo = {
+    id : null,
+    result : null
+}
+ 
+var ajax = { 
+    parseJSONP:function(result){ 
+        movieInfo.result = result.results;
+        $('#movie-list').empty();
+        var movieListHandler = Handlebars.compile($("#movies-template").html());
+        $('#movie-list').html(movieListHandler(result.results));        
+        $('#movie-list').listview('refresh');
+    }
+}
+
+</script>
+
+<div data-role="page" data-theme="d" id="about" style="background-color: #fff;"> 
+		<div class="splash"> 
+			<img src="img\AboutPage.png" alt="splash" width="100%"/>
+		</div>
+	</div>
+
+<div data-role="page" id="pull" data-position="fixed">
+    <div data-role="header">
+        <h1>Test iScroll</h1>
+    </div>
+    <div data-iscroll="" data-role="content" class="iscroll-wrapper">
+        <div class="iscroll-pulldown">
+            <span class="iscroll-pull-icon"></span>
+            <span class="iscroll-pull-label"></span>
+        </div>
+        <ul data-role="listview">
+            <li>Item 1 culpa aut nam qui</li>
+            <li>Item 2 minima quam temporibus quidem</li>
+            <li>Item 3 commodi sint facilis numquam</li>
+        </ul>
+        <div class="iscroll-pullup">
+            <span class="iscroll-pull-icon"></span>
+            <span class="iscroll-pull-label"></span>
+        </div>
+    </div>
+</div>
+
+<script>
+
+document.addEventListener("deviceready", function(e) 
+{
+    new JQuery(function() 
+    {
+        new JQuery(".iscroll-wrapper").bind(
+        {
+            iscroll_onpulldown: onPullDown,
+            iscroll_onpullup: onPullUp
+        });
+    });
+});
+
+
+
+
+</script>
+
+
+</body>
+</html>
